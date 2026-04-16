@@ -1,1037 +1,713 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Niel Store — Aplikasi premium pilihan terbaik. Software berlisensi resmi, harga terjangkau, aktivasi instan.">
-<meta name="keywords" content="beli aplikasi premium, software original, lisensi aplikasi, Niel Store, aplikasi murah">
-<meta name="author" content="Niel Store">
-<meta property="og:title" content="Niel Store — Aplikasi Premium, Harga Bersahabat">
-<meta property="og:description" content="Lebih dari 10.000 pelanggan puas. Lisensi resmi, aktivasi cepat, garansi nyata.">
-<meta property="og:type" content="website">
-<title>Niel Store — Aplikasi Premium</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap');
-
-:root {
-  --bg: #070707;
-  --bg2: #0d0d0d;
-  --bg3: #141414;
-  --bg4: #1c1c1c;
-  --border: rgba(255,255,255,0.06);
-  --border2: rgba(255,255,255,0.1);
-  --muted: #555;
-  --mid: #888;
-  --light: #bbb;
-  --white: #f0f0ee;
-  --gold: #d4a853;
-  --gold2: #e8c07a;
-  --gold-dim: rgba(212,168,83,0.12);
-  --gold-glow: rgba(212,168,83,0.06);
-  --green: #3dba7e;
-  --green-dim: rgba(61,186,126,0.12);
-  --red-dim: rgba(220,80,80,0.1);
-  --ff-head: 'Syne', sans-serif;
-  --ff-body: 'Inter', sans-serif;
-  --ease: cubic-bezier(0.23, 1, 0.32, 1);
-  --t: 0.4s;
-}
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--white);font-family:var(--ff-body);font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none}
-::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--gold)}
-::selection{background:var(--gold-dim);color:var(--white)}
-
-/* ── CURSOR ── */
-#cur,#cur-r{position:fixed;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
-#cur{width:8px;height:8px;background:var(--gold);transition:width .25s,height .25s,background .25s}
-#cur-r{width:32px;height:32px;border:1px solid rgba(212,168,83,.35);transition:width .3s,height .3s,left .12s,top .12s,border-color .3s}
-
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.4rem 5%;display:flex;align-items:center;justify-content:space-between;transition:background var(--t),padding var(--t)}
-nav.stuck{background:rgba(7,7,7,.96);backdrop-filter:blur(16px);padding:1rem 5%;border-bottom:1px solid var(--border)}
-.nav-logo{font-family:var(--ff-head);font-size:1.5rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-0.02em}
-.nav-logo sup{color:var(--gold);font-size:.55em;vertical-align:super;letter-spacing:0}
-.nav-links{display:flex;gap:2.2rem;list-style:none}
-.nav-links a{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color var(--t)}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{background:var(--gold);color:var(--bg);padding:.55rem 1.4rem;font-family:var(--ff-head);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background var(--t),transform var(--t);cursor:none}
-.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none}
-.hamburger span{display:block;width:22px;height:1px;background:var(--white);transition:var(--t)}
-.mob-menu{display:none;position:fixed;inset:0;background:var(--bg);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;opacity:0;pointer-events:none;transition:opacity var(--t)}
-.mob-menu.open{opacity:1;pointer-events:all}
-.mob-menu a{font-family:var(--ff-head);font-size:2rem;font-weight:700;color:var(--white);text-decoration:none;transition:color var(--t)}
-.mob-menu a:hover{color:var(--gold)}
-
-/* ── SECTIONS ── */
-section{padding:7rem 5%;position:relative}
-.tag{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
-.tag::before{content:'';width:1.8rem;height:1px;background:var(--gold)}
-
-/* ── HERO ── */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold-dim);border:1px solid rgba(212,168,83,.2);padding:.45rem 1rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;opacity:0;animation:up .7s .1s var(--ease) forwards}
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-h1.hero-title{font-family:var(--ff-head);font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:1.5rem;opacity:0;animation:up .8s .25s var(--ease) forwards}
-h1.hero-title em{font-style:normal;color:var(--gold)}
-h1.hero-title s{text-decoration:none;-webkit-text-stroke:1px rgba(255,255,255,.18);color:transparent}
-.hero-sub{font-size:.9rem;color:var(--mid);line-height:1.85;max-width:500px;margin-bottom:2.5rem;opacity:0;animation:up .8s .4s var(--ease) forwards}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up .8s .55s var(--ease) forwards}
-.btn-gold{background:var(--gold);color:var(--bg);padding:.85rem 2rem;font-family:var(--ff-head);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:background var(--t),transform var(--t);cursor:none}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--light);padding:.85rem 2rem;font-family:var(--ff-head);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--border2);transition:all var(--t);cursor:none}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-.hero-trust{display:flex;align-items:center;gap:1.2rem;margin-top:2.5rem;opacity:0;animation:up .8s .7s var(--ease) forwards}
-.trust-avatars{display:flex}
-.trust-avatars span{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:600;margin-left:-8px;background:var(--bg4)}
-.trust-avatars span:first-child{margin-left:0}
-.av-a{color:var(--gold)}
-.av-b{color:#7eb8f0}
-.av-c{color:#c17ef0}
-.av-d{color:var(--green)}
-.trust-text p:first-child{font-size:.75rem;font-weight:500;color:var(--white)}
-.trust-text p:last-child{font-size:.65rem;color:var(--mid)}
-.trust-text strong{color:var(--gold)}
-
-/* Hero card panel */
-.hero-panel{opacity:0;animation:up .9s .5s var(--ease) forwards}
-.panel-card{background:var(--bg2);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden}
-.panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
-.panel-title{font-family:var(--ff-head);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--light)}
-.badge-new{background:var(--green-dim);color:var(--green);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .6rem;border:1px solid rgba(61,186,126,.2)}
-.mini-app{display:flex;align-items:center;gap:1rem;padding:.9rem;background:var(--bg3);border:1px solid var(--border);margin-bottom:.7rem;transition:border-color var(--t),transform var(--t);cursor:none}
-.mini-app:hover{border-color:rgba(212,168,83,.25);transform:translateX(3px)}
-.app-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.ic-1{background:linear-gradient(135deg,#1a1035,#2d1b69)}
-.ic-2{background:linear-gradient(135deg,#0d1f0d,#1a3d1a)}
-.ic-3{background:linear-gradient(135deg,#1a0d0d,#3d1a1a)}
-.ic-4{background:linear-gradient(135deg,#0d1a2d,#1a2d4a)}
-.app-info{flex:1;min-width:0}
-.app-name{font-family:var(--ff-head);font-size:.8rem;font-weight:600;color:var(--white)}
-.app-cat{font-size:.62rem;color:var(--mid);margin-top:.1rem}
-.app-price-col{text-align:right}
-.price-orig{font-size:.62rem;color:var(--muted);text-decoration:line-through}
-.price-now{font-family:var(--ff-head);font-size:.85rem;font-weight:700;color:var(--gold)}
-.panel-footer{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.pf-text{font-size:.65rem;color:var(--mid)}
-.pf-text strong{color:var(--green);font-weight:500}
-
-/* ── TICKER ── */
-.ticker{overflow:hidden;background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0}
-.ticker-track{display:flex;gap:3rem;white-space:nowrap;animation:tick 25s linear infinite}
-.ticker-item{display:flex;align-items:center;gap:1rem;flex-shrink:0;font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-.ticker-item b{color:var(--gold);font-weight:500}
-.ticker-sep{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.5}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── ABOUT ── */
-#about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.about-numbers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
-.num-box{background:var(--bg2);padding:2rem;transition:background var(--t)}
-.num-box:hover{background:var(--bg3)}
-.num-val{font-family:var(--ff-head);font-size:2.6rem;font-weight:800;color:var(--gold);line-height:1;margin-bottom:.4rem}
-.num-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
-.about-content h2{font-family:var(--ff-head);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.5rem}
-.about-content h2 em{font-style:normal;color:var(--gold)}
-.about-content p{font-size:.85rem;color:var(--mid);line-height:1.9;margin-bottom:1.2rem}
-.about-checks{display:flex;flex-direction:column;gap:.75rem;margin-top:1.8rem}
-.check-row{display:flex;align-items:flex-start;gap:.75rem;font-size:.8rem;color:var(--light)}
-.check-row::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:.1rem}
-
-/* ── PRODUCTS ── */
-#products{background:var(--bg)}
-.products-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem}
-.products-header h2{font-family:var(--ff-head);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15}
-.filter-tabs{display:flex;gap:.5rem;flex-shrink:0;flex-wrap:wrap}
-.filter-tab{background:transparent;border:1px solid var(--border);color:var(--mid);padding:.45rem 1rem;font-family:var(--ff-head);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:none;transition:all var(--t)}
-.filter-tab.active,.filter-tab:hover{background:var(--gold-dim);border-color:rgba(212,168,83,.3);color:var(--gold)}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.prod-card{background:var(--bg);padding:2rem;position:relative;transition:background var(--t);display:flex;flex-direction:column}
-.prod-card:hover{background:var(--bg2)}
-.prod-card.featured{background:var(--bg2)}
-.prod-ribbon{position:absolute;top:1.2rem;right:1.2rem;background:var(--gold);color:var(--bg);font-family:var(--ff-head);font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .6rem}
-.prod-icon-wrap{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.2rem}
-.prod-category{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
-.prod-name{font-family:var(--ff-head);font-size:1.15rem;font-weight:700;margin-bottom:.7rem;line-height:1.25}
-.prod-desc{font-size:.78rem;color:var(--mid);line-height:1.8;margin-bottom:1.5rem;flex:1}
-.prod-features{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.5rem}
-.feat-item{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--light)}
-.feat-item::before{content:'·';color:var(--gold);font-size:1rem;line-height:1;flex-shrink:0}
-.prod-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.2rem;border-top:1px solid var(--border)}
-.prod-pricing{}
-.prod-old{font-size:.68rem;color:var(--muted);text-decoration:line-through}
-.prod-new{font-family:var(--ff-head);font-size:1.3rem;font-weight:800;color:var(--gold)}
-.prod-per{font-size:.6rem;color:var(--mid);margin-left:.2rem}
-.prod-buy{background:var(--gold);color:var(--bg);border:none;padding:.6rem 1.2rem;font-family:var(--ff-head);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:background var(--t),transform var(--t);white-space:nowrap}
-.prod-buy:hover{background:var(--gold2);transform:translateY(-2px)}
-.prod-buy.outline{background:transparent;color:var(--gold);border:1px solid rgba(212,168,83,.4)}
-.prod-buy.outline:hover{background:var(--gold-dim)}
-.prod-badge-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
-.badge-tag{background:var(--bg4);color:var(--mid);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border:1px solid var(--border)}
-
-/* ── GUARANTEE STRIP ── */
-.guarantee{background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 5%}
-.guarantee-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-.g-item{display:flex;align-items:flex-start;gap:1rem}
-.g-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem}
-.g-title{font-family:var(--ff-head);font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
-.g-desc{font-size:.72rem;color:var(--mid);line-height:1.7}
-
-/* ── TESTIMONIALS ── */
-#testimonials{background:var(--bg2)}
-.testi-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem}
-.testi-header h2{font-family:var(--ff-head);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.02em}
-.rating-summary{text-align:right;flex-shrink:0}
-.rating-big{font-family:var(--ff-head);font-size:2.5rem;font-weight:800;color:var(--gold);line-height:1}
-.stars-row{color:var(--gold);font-size:.9rem;letter-spacing:.1em;margin:.3rem 0}
-.rating-count{font-size:.65rem;color:var(--mid)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.testi-card{background:var(--bg2);padding:2rem;border-top:2px solid transparent;transition:border-color var(--t),background var(--t)}
-.testi-card:hover{border-top-color:var(--gold);background:var(--bg3)}
-.testi-stars{color:var(--gold);font-size:.75rem;letter-spacing:.1em;margin-bottom:1rem}
-.testi-text{font-size:.8rem;color:var(--light);line-height:1.85;margin-bottom:1.5rem;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:.85rem}
-.author-ava{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;flex-shrink:0}
-.a1{background:rgba(212,168,83,.15);color:var(--gold)}
-.a2{background:rgba(126,184,240,.12);color:#7eb8f0}
-.a3{background:rgba(193,126,240,.12);color:#c17ef0}
-.a4{background:rgba(61,186,126,.12);color:var(--green)}
-.a5{background:rgba(240,160,100,.12);color:#f0a064}
-.a6{background:rgba(212,168,83,.1);color:var(--gold)}
-.author-name{font-family:var(--ff-head);font-size:.78rem;font-weight:600;color:var(--white)}
-.author-meta{font-size:.62rem;color:var(--mid);margin-top:.15rem}
-.verified{color:var(--green);margin-left:.3rem;font-size:.6rem}
-.testi-product{display:inline-block;margin-bottom:.8rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);padding:.2rem .55rem;border:1px solid rgba(212,168,83,.15)}
-
-/* ── FAQ ── */
-#faq{background:var(--bg)}
-.faq-wrap{display:grid;grid-template-columns:360px 1fr;gap:6rem;align-items:start}
-.faq-side h2{font-family:var(--ff-head);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:1rem}
-.faq-side p{font-size:.82rem;color:var(--mid);line-height:1.85;margin-bottom:2rem}
-.faq-side .btn-gold{font-size:.7rem;padding:.75rem 1.6rem}
-.faq-list{display:flex;flex-direction:column}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;background:none;border:none;color:var(--white);text-align:left;padding:1.3rem 0;font-family:var(--ff-head);font-size:.85rem;font-weight:600;cursor:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color var(--t)}
-.faq-q:hover{color:var(--gold)}
-.faq-ico{width:22px;height:22px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:.8rem;transition:transform var(--t),border-color var(--t)}
-.faq-item.open .faq-ico{transform:rotate(45deg);border-color:var(--gold)}
-.faq-a{font-size:.78rem;color:var(--mid);line-height:1.9;max-height:0;overflow:hidden;transition:max-height .4s var(--ease),padding .3s}
-.faq-item.open .faq-a{max-height:220px;padding-bottom:1.3rem}
-
-/* ── CONTACT ── */
-#contact{background:var(--bg2)}
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
-.contact-left h2{font-family:var(--ff-head);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:1rem}
-.contact-left h2 em{font-style:normal;color:var(--gold)}
-.contact-left p{font-size:.82rem;color:var(--mid);line-height:1.9;margin-bottom:2rem}
-.contact-channels{display:flex;flex-direction:column;gap:.8rem}
-.ch-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--light);padding:1rem;background:var(--bg3);border:1px solid var(--border);transition:border-color var(--t),color var(--t)}
-.ch-link:hover{border-color:rgba(212,168,83,.3);color:var(--gold)}
-.ch-ico{width:38px;height:38px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;border:1px solid var(--border)}
-.ch-name{font-family:var(--ff-head);font-size:.78rem;font-weight:600;display:block}
-.ch-val{font-size:.65rem;color:var(--mid);display:block;margin-top:.1rem}
-.ch-link:hover .ch-val{color:inherit}
-.contact-form{display:flex;flex-direction:column;gap:1.2rem}
-.f-label{display:block;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem}
-.f-input,.f-select,.f-textarea{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--white);padding:.9rem 1.1rem;font-family:var(--ff-body);font-size:.82rem;font-weight:300;outline:none;transition:border-color var(--t);-webkit-appearance:none;cursor:none}
-.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--gold);background:rgba(212,168,83,.03)}
-.f-input::placeholder,.f-textarea::placeholder{color:var(--muted)}
-.f-select option{background:var(--bg3);color:var(--white)}
-.f-textarea{min-height:120px;resize:vertical;line-height:1.6}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.f-submit{background:var(--gold);color:var(--bg);border:none;padding:1rem 2.2rem;font-family:var(--ff-head);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:none;transition:background var(--t),transform var(--t);align-self:flex-start}
-.f-submit:hover{background:var(--gold2);transform:translateY(-2px)}
-.f-note{font-size:.62rem;color:var(--muted);margin-top:.3rem}
-.f-success{display:none;text-align:center;padding:3rem 2rem}
-.f-success-icon{font-size:2.5rem;margin-bottom:1rem}
-.f-success h3{font-family:var(--ff-head);font-size:1.4rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
-.f-success p{font-size:.8rem;color:var(--mid)}
-
-/* ── FOOTER ── */
-footer{background:var(--bg3);border-top:1px solid var(--border);padding:4rem 5% 2rem}
-.footer-main{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
-.footer-brand{}
-.foot-logo{font-family:var(--ff-head);font-size:1.6rem;font-weight:800;color:var(--white);display:block;margin-bottom:.8rem;letter-spacing:-0.02em}
-.foot-logo sup{color:var(--gold);font-size:.5em;vertical-align:super}
-.foot-desc{font-size:.78rem;color:var(--mid);line-height:1.85;max-width:260px;margin-bottom:1.5rem}
-.foot-socials{display:flex;gap:.6rem}
-.soc{width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--mid);text-decoration:none;font-size:.72rem;font-weight:600;transition:all var(--t)}
-.soc:hover{border-color:var(--gold);color:var(--gold)}
-.foot-col h4{font-family:var(--ff-head);font-size:.6rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
-.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
-.foot-col a{font-size:.78rem;color:var(--mid);text-decoration:none;transition:color var(--t)}
-.foot-col a:hover{color:var(--white)}
-.foot-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.foot-bottom p{font-size:.65rem;color:var(--muted);letter-spacing:.05em}
-.foot-badges{display:flex;gap:.6rem}
-.foot-badge{background:var(--bg4);border:1px solid var(--border);padding:.3rem .7rem;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
-
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}
-.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
-
-@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .hero-grid{grid-template-columns:1fr;gap:3rem}
-  .hero-panel{display:none}
-  .about-grid{grid-template-columns:1fr;gap:3rem}
-  .faq-wrap{grid-template-columns:1fr;gap:3rem}
-  .contact-wrap{grid-template-columns:1fr;gap:3rem}
-  .footer-main{grid-template-columns:1fr 1fr;gap:2.5rem}
-  .footer-brand{grid-column:span 2}
-  .products-grid{grid-template-columns:1fr 1fr}
-  .guarantee-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
-  .testi-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-  section{padding:5rem 5%}
-  .nav-links,.nav-cta{display:none}
-  .hamburger{display:flex}
-  .mob-menu{display:flex}
-  .products-header{flex-direction:column;align-items:flex-start}
-  .filter-tabs{width:100%;overflow-x:auto}
-  .testi-grid{grid-template-columns:1fr}
-  .f-row{grid-template-columns:1fr}
-  .testi-header{flex-direction:column;align-items:flex-start}
-  .products-grid{grid-template-columns:1fr}
-  .guarantee-grid{grid-template-columns:1fr 1fr}
-  .footer-main{grid-template-columns:1fr 1fr}
-  .footer-brand{grid-column:span 2}
-}
-@media(max-width:480px){
-  .guarantee-grid{grid-template-columns:1fr}
-  .about-numbers{grid-template-columns:1fr 1fr}
-  .footer-main{grid-template-columns:1fr}
-  .footer-brand{grid-column:span 1}
-  .hero-actions{flex-direction:column}
-  .btn-gold,.btn-outline{justify-content:center}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niel — Premium App Store | Beli App Premium Termurah</title>
+  <meta name="description" content="Niel menyediakan akun premium app terlengkap dengan harga terjangkau. Spotify, YouTube, Netflix, Canva, dan lainnya. Bayar langsung via QRIS, VA, E-Wallet.">
+  <meta name="keywords" content="app premium, spotify premium, youtube premium, netflix premium, canva pro, beli akun premium, QRIS">
+  <meta name="author" content="Niel">
+  <meta property="og:title" content="Niel — Premium App Store">
+  <meta property="og:description" content="Beli akun premium app termurah. Pembayaran langsung via QRIS, VA, E-Wallet.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#00E5A0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00E5A0',
+            'primary-dark': '#00CC8E',
+            'primary-glow': 'rgba(0,229,160,0.15)',
+            surface: '#141416',
+            'surface-el': '#1C1C1F',
+            'surface-border': '#2A2A2E',
+            dark: '#0A0A0B',
+            'text-primary': '#F5F5F5',
+            'text-secondary': '#8A8A8E',
+            'text-muted': '#555558',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-dark text-text-primary font-['Inter'] antialiased overflow-x-hidden">
 
-<div id="cur"></div>
-<div id="cur-r"></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="#hero" class="nav-logo">Niel<sup>™</sup></a>
-  <ul class="nav-links">
-    <li><a href="#about">Tentang</a></li>
-    <li><a href="#products">Produk</a></li>
-    <li><a href="#testimonials">Review</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Kontak</a></li>
-  </ul>
-  <a href="#products" class="nav-cta">Lihat Produk ↗</a>
-  <button class="hamburger" id="ham" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="mob-menu" id="mobMenu">
-  <a href="#about">Tentang</a>
-  <a href="#products">Produk</a>
-  <a href="#testimonials">Review</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contact">Kontak</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        Terpercaya sejak 2021 · 10.000+ pelanggan aktif
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <span class="text-dark font-black text-sm">N</span>
+          </div>
+          <span class="text-xl font-bold tracking-tight">Niel</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#about" class="nav-link text-sm text-text-secondary hover:text-primary transition-colors duration-300">Tentang</a>
+          <a href="#products" class="nav-link text-sm text-text-secondary hover:text-primary transition-colors duration-300">Produk</a>
+          <a href="#testimonials" class="nav-link text-sm text-text-secondary hover:text-primary transition-colors duration-300">Testimoni</a>
+          <a href="#faq" class="nav-link text-sm text-text-secondary hover:text-primary transition-colors duration-300">FAQ</a>
+          <a href="#contact" class="nav-link text-sm text-text-secondary hover:text-primary transition-colors duration-300">Kontak</a>
+        </div>
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-text-secondary hover:text-primary transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
       </div>
-      <h1 class="hero-title">
-        Aplikasi <em>Premium</em><br>
-        Tanpa Harga yang<br>
-        <s>Membakar</s> Kantong
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden fixed inset-0 bg-dark/98 backdrop-blur-xl z-50 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+      <div class="flex flex-col h-full p-6">
+        <div class="flex justify-end">
+          <button id="mobileMenuClose" class="p-2 text-text-secondary hover:text-primary transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-1 gap-8">
+          <a href="#about" class="mobile-link text-2xl font-semibold text-text-secondary hover:text-primary transition-colors">Tentang</a>
+          <a href="#products" class="mobile-link text-2xl font-semibold text-text-secondary hover:text-primary transition-colors">Produk</a>
+          <a href="#testimonials" class="mobile-link text-2xl font-semibold text-text-secondary hover:text-primary transition-colors">Testimoni</a>
+          <a href="#faq" class="mobile-link text-2xl font-semibold text-text-secondary hover:text-primary transition-colors">FAQ</a>
+          <a href="#contact" class="mobile-link text-2xl font-semibold text-text-secondary hover:text-primary transition-colors">Kontak</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 hero-bg"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] animate-pulse-slow"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="reveal-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-surface-border bg-surface/50 backdrop-blur-sm mb-8">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-xs sm:text-sm text-text-secondary font-medium">Trusted by 1,000+ pelanggan</span>
+        </div>
+      </div>
+      <h1 class="reveal-up text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-6">
+        Akun Premium<br>
+        <span class="text-gradient">Termurah & Terpercaya</span>
       </h1>
-      <p class="hero-sub">
-        Lisensi resmi, aktivasi instan, dan dukungan nyata. Ratusan software terbaik
-        dunia — dari desain, produktivitas, hingga keamanan — semuanya tersedia
-        di satu tempat dengan harga yang masuk akal.
+      <p class="reveal-up text-text-secondary text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+        Dapatkan akses premium ke aplikasi favoritmu dengan harga yang bersahabat. Pembayaran instan — langsung bayar di sini, tanpa redirect ke chat.
       </p>
-      <div class="hero-actions">
-        <a href="#products" class="btn-gold">🛒 Belanja Sekarang</a>
-        <a href="#about" class="btn-outline">Kenali Kami →</a>
-      </div>
-      <div class="hero-trust">
-        <div class="trust-avatars">
-          <span class="av-a">AR</span>
-          <span class="av-b">DK</span>
-          <span class="av-c">YN</span>
-          <span class="av-d">SW</span>
-        </div>
-        <div class="trust-text">
-          <p>Bergabung <strong>10.000+</strong> pengguna puas</p>
-          <p>Rating rata-rata <strong style="color:var(--gold)">4.9/5</strong> dari 3.200+ ulasan</p>
-        </div>
-      </div>
-    </div>
-    <div class="hero-panel">
-      <div class="panel-card">
-        <div class="panel-header">
-          <span class="panel-title">🔥 Terlaris Minggu Ini</span>
-          <span class="badge-new">Live</span>
-        </div>
-        <div class="mini-app">
-          <div class="app-icon ic-1">🎨</div>
-          <div class="app-info">
-            <div class="app-name">Adobe Creative Cloud</div>
-            <div class="app-cat">Desain · Lisensi 1 Tahun</div>
-          </div>
-          <div class="app-price-col">
-            <div class="price-orig">Rp 1.200.000</div>
-            <div class="price-now">Rp 349K</div>
-          </div>
-        </div>
-        <div class="mini-app">
-          <div class="app-icon ic-2">📊</div>
-          <div class="app-info">
-            <div class="app-name">Microsoft Office 365</div>
-            <div class="app-cat">Produktivitas · 5 Device</div>
-          </div>
-          <div class="app-price-col">
-            <div class="price-orig">Rp 900.000</div>
-            <div class="price-now">Rp 199K</div>
-          </div>
-        </div>
-        <div class="mini-app">
-          <div class="app-icon ic-3">🎬</div>
-          <div class="app-info">
-            <div class="app-name">Capcut Pro</div>
-            <div class="app-cat">Video Editing · 1 Tahun</div>
-          </div>
-          <div class="app-price-col">
-            <div class="price-orig">Rp 350.000</div>
-            <div class="price-now">Rp 89K</div>
-          </div>
-        </div>
-        <div class="mini-app">
-          <div class="app-icon ic-4">🔒</div>
-          <div class="app-info">
-            <div class="app-name">NordVPN Premium</div>
-            <div class="app-cat">Keamanan · 6 Device</div>
-          </div>
-          <div class="app-price-col">
-            <div class="price-orig">Rp 750.000</div>
-            <div class="price-now">Rp 179K</div>
-          </div>
-        </div>
-        <div class="panel-footer">
-          <span class="pf-text">Stok tersedia <strong>✓ Aktif</strong></span>
-          <a href="#products" class="btn-gold" style="font-size:.62rem;padding:.5rem 1rem">Lihat Semua →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="ticker-sep"></span>Adobe CC <b>— Rp 349K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Office 365 <b>— Rp 199K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Canva Pro <b>— Rp 79K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Spotify Premium <b>— Rp 49K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>NordVPN <b>— Rp 179K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>ChatGPT Plus <b>— Rp 249K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Notion Pro <b>— Rp 69K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Figma Pro <b>— Rp 149K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Adobe CC <b>— Rp 349K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Office 365 <b>— Rp 199K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Canva Pro <b>— Rp 79K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Spotify Premium <b>— Rp 49K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>NordVPN <b>— Rp 179K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>ChatGPT Plus <b>— Rp 249K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Notion Pro <b>— Rp 69K</b></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Figma Pro <b>— Rp 149K</b></div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-numbers reveal">
-      <div class="num-box">
-        <div class="num-val">10K+</div>
-        <div class="num-label">Pelanggan Aktif</div>
-      </div>
-      <div class="num-box">
-        <div class="num-val">98%</div>
-        <div class="num-label">Kepuasan</div>
-      </div>
-      <div class="num-box">
-        <div class="num-val">150+</div>
-        <div class="num-label">Aplikasi Tersedia</div>
-      </div>
-      <div class="num-box">
-        <div class="num-val">&lt;5m</div>
-        <div class="num-label">Waktu Aktivasi</div>
-      </div>
-    </div>
-    <div class="about-content">
-      <div class="tag reveal">Tentang Niel Store</div>
-      <h2 class="reveal">Kami tahu rasanya <em>butuh software bagus</em> tapi harganya bikin mikir dua kali</h2>
-      <p class="reveal d1">
-        Niel Store lahir dari frustrasi nyata. Harga aplikasi premium memang mahal — tapi
-        bukan berarti kreator, pelajar, dan profesional Indonesia tidak berhak mendapatkannya.
-        Kami hadir dengan solusi: lisensi resmi, harga terjangkau, dan layanan yang tidak menghilang
-        setelah pembayaran.
-      </p>
-      <p class="reveal d2">
-        Sejak 2021, kami telah melayani lebih dari 10.000 pelanggan dari seluruh Indonesia.
-        Mulai dari freelancer desainer, mahasiswa, content creator, hingga tim startup yang
-        butuh tools profesional tanpa menguras budget.
-      </p>
-      <div class="about-checks reveal d3">
-        <div class="check-row">Semua produk berlisensi resmi dan legal, bukan crack atau bajakan</div>
-        <div class="check-row">Aktivasi dalam hitungan menit, panduan lengkap disertakan</div>
-        <div class="check-row">Customer service responsif, WhatsApp aktif setiap hari</div>
-        <div class="check-row">Garansi refund atau penggantian jika ada masalah teknis</div>
-        <div class="check-row">Harga transparan, tidak ada biaya tersembunyi</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="products-header">
-    <div>
-      <div class="tag reveal">Katalog Produk</div>
-      <h2 class="reveal">Aplikasi pilihan, <br>harga terbaik</h2>
-    </div>
-    <div class="filter-tabs reveal">
-      <button class="filter-tab active" onclick="filterProducts(this,'all')">Semua</button>
-      <button class="filter-tab" onclick="filterProducts(this,'desain')">Desain</button>
-      <button class="filter-tab" onclick="filterProducts(this,'produktivitas')">Produktivitas</button>
-      <button class="filter-tab" onclick="filterProducts(this,'keamanan')">Keamanan</button>
-      <button class="filter-tab" onclick="filterProducts(this,'ai')">AI Tools</button>
-    </div>
-  </div>
-  <div class="products-grid" id="productsGrid">
-
-    <div class="prod-card featured reveal" data-cat="desain">
-      <div class="prod-ribbon">⭐ Terlaris</div>
-      <div class="prod-icon-wrap ic-1">🎨</div>
-      <div class="prod-category">Desain Kreatif</div>
-      <div class="prod-badge-row">
-        <span class="badge-tag">Windows</span>
-        <span class="badge-tag">Mac</span>
-        <span class="badge-tag">1 Tahun</span>
-      </div>
-      <div class="prod-name">Adobe Creative Cloud</div>
-      <div class="prod-desc">Akses penuh ke seluruh aplikasi Adobe: Photoshop, Illustrator, Premiere Pro, After Effects, dan 20+ app lainnya. Solusi lengkap untuk kreator profesional.</div>
-      <div class="prod-features">
-        <div class="feat-item">Akses 20+ aplikasi Adobe sekaligus</div>
-        <div class="feat-item">100GB penyimpanan cloud</div>
-        <div class="feat-item">Lisensi 1 perangkat, 1 tahun</div>
-        <div class="feat-item">Update otomatis terbaru</div>
-      </div>
-      <div class="prod-footer">
-        <div class="prod-pricing">
-          <div class="prod-old">Rp 1.200.000</div>
-          <div class="prod-new">Rp 349K<span class="prod-per">/thn</span></div>
-        </div>
-        <button class="prod-buy" onclick="order('Adobe Creative Cloud')">Beli Sekarang</button>
-      </div>
-    </div>
-
-    <div class="prod-card reveal d1" data-cat="produktivitas">
-      <div class="prod-icon-wrap ic-2">📊</div>
-      <div class="prod-category">Produktivitas</div>
-      <div class="prod-badge-row">
-        <span class="badge-tag">Windows</span>
-        <span class="badge-tag">Mac</span>
-        <span class="badge-tag">5 Device</span>
-      </div>
-      <div class="prod-name">Microsoft Office 365</div>
-      <div class="prod-desc">Word, Excel, PowerPoint, Outlook, Teams, dan OneDrive 1TB. Untuk 5 perangkat sekaligus — cocok untuk keluarga atau tim kecil.</div>
-      <div class="prod-features">
-        <div class="feat-item">5 instalasi di berbagai perangkat</div>
-        <div class="feat-item">1TB OneDrive per pengguna</div>
-        <div class="feat-item">Akses versi web dan mobile</div>
-      </div>
-      <div class="prod-footer">
-        <div class="prod-pricing">
-          <div class="prod-old">Rp 900.000</div>
-          <div class="prod-new">Rp 199K<span class="prod-per">/thn</span></div>
-        </div>
-        <button class="prod-buy" onclick="order('Microsoft Office 365')">Beli Sekarang</button>
-      </div>
-    </div>
-
-    <div class="prod-card reveal d2" data-cat="ai">
-      <div class="prod-icon-wrap" style="background:linear-gradient(135deg,#10180d,#1e2e14)">🤖</div>
-      <div class="prod-category">AI Tools</div>
-      <div class="prod-badge-row">
-        <span class="badge-tag">Web</span>
-        <span class="badge-tag">API Access</span>
-        <span class="badge-tag">1 Bulan</span>
-      </div>
-      <div class="prod-name">ChatGPT Plus</div>
-      <div class="prod-desc">Akses GPT-4o, browsing internet real-time, image generation dengan DALL·E 3, dan kemampuan analisis dokumen. Tanpa batasan pesan.</div>
-      <div class="prod-features">
-        <div class="feat-item">GPT-4o tanpa batas</div>
-        <div class="feat-item">DALL·E 3 image generation</div>
-        <div class="feat-item">Analisis PDF & dokumen</div>
-      </div>
-      <div class="prod-footer">
-        <div class="prod-pricing">
-          <div class="prod-old">Rp 320.000</div>
-          <div class="prod-new">Rp 249K<span class="prod-per">/bln</span></div>
-        </div>
-        <button class="prod-buy" onclick="order('ChatGPT Plus')">Beli Sekarang</button>
-      </div>
-    </div>
-
-    <div class="prod-card reveal" data-cat="desain">
-      <div class="prod-icon-wrap" style="background:linear-gradient(135deg,#1a0a1a,#2d0f2d)">✏️</div>
-      <div class="prod-category">Desain UI/UX</div>
-      <div class="prod-badge-row">
-        <span class="badge-tag">Windows</span>
-        <span class="badge-tag">Mac</span>
-      </div>
-      <div class="prod-name">Figma Professional</div>
-      <div class="prod-desc">Platform desain kolaboratif terbaik. Prototyping, handoff developer, dan design system dalam satu tempat. Wajib bagi designer modern.</div>
-      <div class="prod-features">
-        <div class="feat-item">Proyek tak terbatas</div>
-        <div class="feat-item">Kolaborasi real-time</div>
-        <div class="feat-item">Dev mode & inspect</div>
-      </div>
-      <div class="prod-footer">
-        <div class="prod-pricing">
-          <div class="prod-old">Rp 350.000</div>
-          <div class="prod-new">Rp 149K<span class="prod-per">/bln</span></div>
-        </div>
-        <button class="prod-buy" onclick="order('Figma Professional')">Beli Sekarang</button>
-      </div>
-    </div>
-
-    <div class="prod-card reveal d1" data-cat="keamanan">
-      <div class="prod-ribbon" style="background:var(--green);color:var(--bg)">🛡 Paling Aman</div>
-      <div class="prod-icon-wrap ic-4">🔒</div>
-      <div class="prod-category">Keamanan & Privasi</div>
-      <div class="prod-badge-row">
-        <span class="badge-tag">6 Device</span>
-        <span class="badge-tag">1 Tahun</span>
-      </div>
-      <div class="prod-name">NordVPN Premium</div>
-      <div class="prod-desc">VPN terpercaya dengan enkripsi militer. Akses konten global, lindungi data dari hacker, dan browsing anonim di mana saja tanpa hambatan.</div>
-      <div class="prod-features">
-        <div class="feat-item">5.400+ server di 60 negara</div>
-        <div class="feat-item">No-log policy ketat</div>
-        <div class="feat-item">Hingga 6 perangkat</div>
-      </div>
-      <div class="prod-footer">
-        <div class="prod-pricing">
-          <div class="prod-old">Rp 750.000</div>
-          <div class="prod-new">Rp 179K<span class="prod-per">/thn</span></div>
-        </div>
-        <button class="prod-buy" onclick="order('NordVPN Premium')">Beli Sekarang</button>
-      </div>
-    </div>
-
-    <div class="prod-card reveal d2" data-cat="produktivitas">
-      <div class="prod-icon-wrap" style="background:linear-gradient(135deg,#0d1118,#162032)">🧠</div>
-      <div class="prod-category">Produktivitas AI</div>
-      <div class="prod-badge-row">
-        <span class="badge-tag">Web</span>
-        <span class="badge-tag">Mobile</span>
-      </div>
-      <div class="prod-name">Notion AI Pro</div>
-      <div class="prod-desc">Workspace all-in-one dengan AI yang membantu menulis, merangkum, dan mengorganisir informasi. Database, to-do, wiki tim dalam satu platform.</div>
-      <div class="prod-features">
-        <div class="feat-item">Halaman & database unlimited</div>
-        <div class="feat-item">Notion AI tanpa batas</div>
-        <div class="feat-item">Guest sharing unlimited</div>
-      </div>
-      <div class="prod-footer">
-        <div class="prod-pricing">
-          <div class="prod-old">Rp 180.000</div>
-          <div class="prod-new">Rp 69K<span class="prod-per">/bln</span></div>
-        </div>
-        <button class="prod-buy" onclick="order('Notion AI Pro')">Beli Sekarang</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- GUARANTEE STRIP -->
-<div class="guarantee">
-  <div class="guarantee-grid">
-    <div class="g-item reveal">
-      <div class="g-icon">⚡</div>
-      <div>
-        <div class="g-title">Aktivasi Instan</div>
-        <div class="g-desc">Lisensi dikirim ke email dalam hitungan menit setelah pembayaran dikonfirmasi.</div>
-      </div>
-    </div>
-    <div class="g-item reveal d1">
-      <div class="g-icon">✅</div>
-      <div>
-        <div class="g-title">Lisensi 100% Legal</div>
-        <div class="g-desc">Bukan crack, bukan bajakan. Semua lisensi resmi dari publisher aslinya.</div>
-      </div>
-    </div>
-    <div class="g-item reveal d2">
-      <div class="g-icon">🔄</div>
-      <div>
-        <div class="g-title">Garansi Penggantian</div>
-        <div class="g-desc">Ada masalah teknis? Kami ganti atau refund. Tanpa pertanyaan berlebihan.</div>
-      </div>
-    </div>
-    <div class="g-item reveal d3">
-      <div class="g-icon">💬</div>
-      <div>
-        <div class="g-title">Support Nyata</div>
-        <div class="g-desc">WhatsApp aktif setiap hari. Customer service yang merespons, bukan bot.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="testi-header">
-    <div>
-      <div class="tag reveal">Ulasan Pelanggan</div>
-      <h2 class="reveal">Mereka sudah buktikan sendiri</h2>
-    </div>
-    <div class="rating-summary reveal">
-      <div class="rating-big">4.9</div>
-      <div class="stars-row">★★★★★</div>
-      <div class="rating-count">dari 3.240+ ulasan terverifikasi</div>
-    </div>
-  </div>
-  <div class="testi-grid">
-    <div class="testi-card reveal">
-      <span class="testi-product">Adobe CC</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Awalnya skeptis, tapi ternyata beneran legit. Langsung aktif dalam 10 menit setelah transfer. Adobe-nya jalan sempurna, update otomatis juga. Harga segini untuk CC setahun? Masih tidak percaya."</p>
-      <div class="testi-author">
-        <div class="author-ava a1">RH</div>
-        <div>
-          <div class="author-name">Rizky Halim <span class="verified">✓</span></div>
-          <div class="author-meta">Graphic Designer · Jakarta</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card reveal d1">
-      <span class="testi-product">Office 365</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Beli Office 365 untuk 5 perangkat. Aktivasi semua HP dan laptop dalam satu hari. Customer servicenya sabar banget nemenin saya yang gaptek ini sampai berhasil. Recommended banget!"</p>
-      <div class="testi-author">
-        <div class="author-ava a2">SW</div>
-        <div>
-          <div class="author-name">Siti Wulandari <span class="verified">✓</span></div>
-          <div class="author-meta">Guru SMA · Surabaya</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card reveal d2">
-      <span class="testi-product">ChatGPT Plus</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Sudah langganan 6 bulan di sini. Tiap bulan mulus, tidak pernah ada masalah. Harganya jauh di bawah beli langsung tapi fungsinya sama persis. Niel Store sudah jadi andalan buat tools-tools saya."</p>
-      <div class="testi-author">
-        <div class="author-ava a3">YP</div>
-        <div>
-          <div class="author-name">Yoga Pratama <span class="verified">✓</span></div>
-          <div class="author-meta">Content Creator · Bandung</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card reveal">
-      <span class="testi-product">NordVPN</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"VPN-nya kenceng banget, tidak ada yang lambat. Bisa unlock semua streaming internasional. Harga setahun lebih murah daripada sebulan beli sendiri. Teman-teman di kantor juga akhirnya ikutan beli."</p>
-      <div class="testi-author">
-        <div class="author-ava a4">BN</div>
-        <div>
-          <div class="author-name">Bagas Nugroho <span class="verified">✓</span></div>
-          <div class="author-meta">Software Engineer · Yogyakarta</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card reveal d1">
-      <span class="testi-product">Figma Pro</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Kalau ada yang masih ragu beli di sini, jangan. Saya sudah repeat order 4 kali dan selalu beres. Responsnya cepat, tidak sampai 5 menit langsung diproses. Niel Store is the real deal."</p>
-      <div class="testi-author">
-        <div class="author-ava a5">DR</div>
-        <div>
-          <div class="author-name">Dara Rahmah <span class="verified">✓</span></div>
-          <div class="author-meta">UI/UX Designer · Remote</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card reveal d2">
-      <span class="testi-product">Notion Pro</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Pernah ada masalah aktivasi sekali, langsung direspon dalam 20 menit dan langsung diganti tanpa ribet. Ini yang bikin saya loyal — afterservice-nya bagus. Sekarang semua kebutuhan software dari sini."</p>
-      <div class="testi-author">
-        <div class="author-ava a6">MF</div>
-        <div>
-          <div class="author-name">Mira Fitria <span class="verified">✓</span></div>
-          <div class="author-meta">Startup Founder · Bali</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="faq-wrap">
-    <div class="faq-side">
-      <div class="tag reveal">FAQ</div>
-      <h2 class="reveal">Ada yang ingin kamu tanyakan?</h2>
-      <p class="reveal">Kami kompilasi pertanyaan yang paling sering muncul. Kalau tidak ketemu jawabannya, langsung chat kami.</p>
-      <a href="#contact" class="btn-gold reveal">Chat Sekarang →</a>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item reveal">
-        <button class="faq-q">Apakah semua produk di sini legal dan aman? <span class="faq-ico">+</span></button>
-        <div class="faq-a">Ya, 100%. Semua produk yang kami jual adalah lisensi resmi dan legal. Bukan crack, keygen, atau bajakan. Lisensi dibeli dari channel resmi publisher dan didistribusikan ulang dengan margin yang lebih efisien.</div>
-      </div>
-      <div class="faq-item reveal d1">
-        <button class="faq-q">Berapa lama proses aktivasi setelah bayar? <span class="faq-ico">+</span></button>
-        <div class="faq-a">Rata-rata 3–10 menit pada jam operasional (08.00–22.00 WIB). Di luar jam tersebut maksimal 2 jam. Semua data aktivasi dikirim via email dan WhatsApp yang kamu daftarkan saat checkout.</div>
-      </div>
-      <div class="faq-item reveal d2">
-        <button class="faq-q">Bagaimana jika lisensi yang saya beli bermasalah? <span class="faq-ico">+</span></button>
-        <div class="faq-a">Langsung hubungi kami via WhatsApp atau email. Kami akan proses penggantian lisensi dalam waktu 1x24 jam kerja. Jika tidak bisa diganti, kami kembalikan uang kamu penuh tanpa potongan.</div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q">Metode pembayaran apa yang tersedia? <span class="faq-ico">+</span></button>
-        <div class="faq-a">Transfer bank (BCA, Mandiri, BNI, BRI), dompet digital (GoPay, OVO, Dana, ShopeePay), QRIS, dan virtual account semua bank. Pembayaran dikonfirmasi otomatis secara real-time.</div>
-      </div>
-      <div class="faq-item reveal d1">
-        <button class="faq-q">Apakah ada diskon untuk pembelian dalam jumlah banyak? <span class="faq-ico">+</span></button>
-        <div class="faq-a">Ada! Untuk pembelian 3 produk atau lebih, dapatkan diskon tambahan 10–15%. Untuk kebutuhan enterprise atau tim dengan 10+ lisensi, hubungi kami untuk penawaran khusus.</div>
-      </div>
-      <div class="faq-item reveal d2">
-        <button class="faq-q">Apakah bisa request aplikasi yang belum ada di katalog? <span class="faq-ico">+</span></button>
-        <div class="faq-a">Tentu. Hubungi kami via WhatsApp atau form kontak dengan nama aplikasi yang kamu butuhkan. Tim kami akan cek ketersediaan dan memberikan penawaran harga dalam 1x24 jam.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-wrap">
-    <div class="contact-left">
-      <div class="tag reveal">Hubungi Kami</div>
-      <h2 class="reveal">Ada yang bisa kami <em>bantu?</em></h2>
-      <p class="reveal">Mau tanya produk, butuh rekomendasi software, atau ada masalah teknis — tim kami siap merespons dengan cepat dan ramah.</p>
-      <div class="contact-channels reveal">
-        <a href="https://wa.me/628xxx" class="ch-link">
-          <span class="ch-ico">💬</span>
-          <span><span class="ch-name">WhatsApp</span><span class="ch-val">+62 8xx-xxxx-xxxx · Aktif 08.00–22.00</span></span>
+      <div class="reveal-up flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#products" class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-dark font-semibold rounded-xl hover:bg-primary-dark hover:shadow-[0_0_40px_rgba(0,229,160,0.3)] transition-all duration-300 hover:-translate-y-0.5">
+          Lihat Produk
+          <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
         </a>
-        <a href="mailto:cs@nielstore.id" class="ch-link">
-          <span class="ch-ico">✉</span>
-          <span><span class="ch-name">Email</span><span class="ch-val">cs@nielstore.id · Respon &lt;2 jam</span></span>
-        </a>
-        <a href="#" class="ch-link">
-          <span class="ch-ico">📷</span>
-          <span><span class="ch-name">Instagram</span><span class="ch-val">@niel.store · DM terbuka</span></span>
-        </a>
-        <a href="#" class="ch-link">
-          <span class="ch-ico">🛒</span>
-          <span><span class="ch-name">Tokopedia / Shopee</span><span class="ch-val">Niel Official Store</span></span>
+        <a href="#about" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-surface-border text-text-secondary font-medium rounded-xl hover:border-primary/50 hover:text-primary transition-all duration-300">
+          <i data-lucide="play-circle" class="w-4 h-4"></i>
+          Pelajari Lebih
         </a>
       </div>
+      <div class="reveal-up mt-16 flex items-center justify-center gap-8 sm:gap-12">
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold counter" data-target="1000">0</div>
+          <div class="text-xs text-text-muted mt-1">Pelanggan</div>
+        </div>
+        <div class="w-px h-10 bg-surface-border"></div>
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold counter" data-target="15">0</div>
+          <div class="text-xs text-text-muted mt-1">App Premium</div>
+        </div>
+        <div class="w-px h-10 bg-surface-border"></div>
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-primary">24/7</div>
+          <div class="text-xs text-text-muted mt-1">Support</div>
+        </div>
+      </div>
     </div>
-    <div>
-      <form class="contact-form reveal" id="cForm">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted"></i>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="relative py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <label class="f-label">Nama Lengkap</label>
-          <input type="text" class="f-input" placeholder="Nama kamu" required>
-        </div>
-        <div class="f-row">
-          <div>
-            <label class="f-label">Email</label>
-            <input type="email" class="f-input" placeholder="email@kamu.com" required>
+          <div class="reveal-up">
+            <span class="inline-block text-primary text-sm font-semibold tracking-widest uppercase mb-4">Tentang Niel</span>
           </div>
-          <div>
-            <label class="f-label">WhatsApp</label>
-            <input type="text" class="f-input" placeholder="08xxxxxxxxx">
+          <h2 class="reveal-up text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+            Kami Hadir Untuk<br>
+            <span class="text-gradient">Memudahkan Hidupmu</span>
+          </h2>
+          <p class="reveal-up text-text-secondary text-base sm:text-lg leading-relaxed mb-6">
+            Niel lahir dari keresahan sederhana — mengapa harus mahal untuk menikmati fitur premium? Kami percaya akses terhadap produktivitas dan hiburan berkualitas应该是 hak semua orang, bukan privilese.
+          </p>
+          <p class="reveal-up text-text-secondary text-base sm:text-lg leading-relaxed mb-8">
+            Sejak 2022, kami telah melayani ribuan pelanggan dengan layanan yang transparan, proses yang instan, dan harga yang benar-benar bersahabat. Setiap akun yang kami jual sudah diverifikasi dan siap pakai.
+          </p>
+          <div class="reveal-up grid grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl border border-surface-border bg-surface/50">
+              <i data-lucide="shield-check" class="w-6 h-6 text-primary mb-2"></i>
+              <div class="text-sm font-semibold">Garansi Aktif</div>
+              <div class="text-xs text-text-muted mt-1">100% akun terverifikasi</div>
+            </div>
+            <div class="p-4 rounded-xl border border-surface-border bg-surface/50">
+              <i data-lucide="zap" class="w-6 h-6 text-primary mb-2"></i>
+              <div class="text-sm font-semibold">Proses Instan</div>
+              <div class="text-xs text-text-muted mt-1">Dalam hitungan detik</div>
+            </div>
+            <div class="p-4 rounded-xl border border-surface-border bg-surface/50">
+              <i data-lucide="headphones" class="w-6 h-6 text-primary mb-2"></i>
+              <div class="text-sm font-semibold">Support 24/7</div>
+              <div class="text-xs text-text-muted mt-1">Selalu siap membantu</div>
+            </div>
+            <div class="p-4 rounded-xl border border-surface-border bg-surface/50">
+              <i data-lucide="wallet" class="w-6 h-6 text-primary mb-2"></i>
+              <div class="text-sm font-semibold">Bayar Langsung</div>
+              <div class="text-xs text-text-muted mt-1">QRIS, VA, E-Wallet</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-right relative">
+          <div class="absolute -top-8 -right-8 w-72 h-72 bg-primary/5 rounded-full blur-[100px]"></div>
+          <div class="relative grid grid-cols-2 gap-4">
+            <div class="space-y-4">
+              <div class="rounded-2xl overflow-hidden border border-surface-border bg-surface">
+                <img src="http://static.photos/technology/320x240/101" alt="Premium Apps" class="w-full h-40 object-cover opacity-80">
+              </div>
+              <div class="p-5 rounded-2xl border border-surface-border bg-surface">
+                <div class="text-3xl font-bold text-primary mb-1">99%</div>
+                <div class="text-xs text-text-muted">Kepuasan pelanggan</div>
+              </div>
+            </div>
+            <div class="space-y-4 pt-8">
+              <div class="p-5 rounded-2xl border border-surface-border bg-surface">
+                <div class="text-3xl font-bold mb-1">2K+</div>
+                <div class="text-xs text-text-muted">Transaksi sukses</div>
+              </div>
+              <div class="rounded-2xl overflow-hidden border border-surface-border bg-surface">
+                <img src="http://static.photos/workspace/320x240/202" alt="Workspace" class="w-full h-40 object-cover opacity-80">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="relative py-24 sm:py-32">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-surface-border to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="reveal-up inline-block text-primary text-sm font-semibold tracking-widest uppercase mb-4">Produk Kami</span>
+        <h2 class="reveal-up text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          Pilih <span class="text-gradient">Premium App</span> Favoritmu
+        </h2>
+        <p class="reveal-up text-text-secondary text-base sm:text-lg max-w-xl mx-auto">
+          Semua akun sudah diverifikasi dan siap pakai. Bayar langsung di sini — praktis dan instan.
+        </p>
+      </div>
+
+      <!-- Filter -->
+      <div class="reveal-up flex flex-wrap items-center justify-center gap-2 mb-12">
+        <button class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-filter="all">Semua</button>
+        <button class="filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-filter="streaming">Streaming</button>
+        <button class="filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-filter="productivity">Produktivitas</button>
+        <button class="filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-filter="bundle">Bundle</button>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Products will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="relative py-24 sm:py-32 overflow-hidden">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-surface-border to-transparent"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[150px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="reveal-up inline-block text-primary text-sm font-semibold tracking-widest uppercase mb-4">Testimoni</span>
+        <h2 class="reveal-up text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          Kata Mereka <span class="text-gradient">Tentang Niel</span>
+        </h2>
+        <p class="reveal-up text-text-secondary text-base sm:text-lg max-w-xl mx-auto">
+          Lebih dari 1,000 pelanggan sudah membuktikan kualitas layanan kami.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="reveal-up group p-6 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">"Beli Spotify Premium di Niel, prosesnya super cepat. Bayar pakai QRIS langsung aktif, gak ribet harus chat-chat dulu. Recommended banget!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">RA</div>
+            <div>
+              <div class="text-sm font-semibold">Rizky Aditya</div>
+              <div class="text-xs text-text-muted">Mahasiswa, Jakarta</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-up group p-6 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">"Sudah 3x langganan Canva Pro di sini. Harga paling murah yang pernah aku temuin, dan akunnya langsung bisa dipake. Gak pernah mengecewakan."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">SN</div>
+            <div>
+              <div class="text-sm font-semibold">Sari Nurhayati</div>
+              <div class="text-xs text-text-muted">Freelancer, Bandung</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-up group p-6 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">"Beli YouTube Premium keluarga, semuanya aktif dan aman. Yang paling suka sistem pembayarannya — tinggal scan QRIS, selesai. Gak perlu pindah-pindah app."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">BP</div>
+            <div>
+              <div class="text-sm font-semibold">Budi Prasetyo</div>
+              <div class="text-xs text-text-muted">Karyawan, Surabaya</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-up group p-6 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">"Netflix 4K dari Niel emang juara. Udah setahun lebih langganan dan gak pernah ada masalah. Respon admin juga cepat banget kalau ada pertanyaan."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">DM</div>
+            <div>
+              <div class="text-sm font-semibold">Dewi Maharani</div>
+              <div class="text-xs text-text-muted">Content Creator, Yogyakarta</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-up group p-6 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">"Bundel ChatGPT + Canva Pro hemat banget dibeli satuan. Niel beneran bisa diandelin, transaksinya smooth dan akun langsung aktif."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">AF</div>
+            <div>
+              <div class="text-sm font-semibold">Andi Firmansyah</div>
+              <div class="text-xs text-text-muted">UI Designer, Semarang</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-up group p-6 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">"Awalnya ragu, tapi ternyata memang legit. Pembayaran QRIS otomatis, akun langsung masuk email. Dari dulu beli di tempat lain ribet, di Niel mah tenang."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">LW</div>
+            <div>
+              <div class="text-sm font-semibold">Linda Wulandari</div>
+              <div class="text-xs text-text-muted">Ibu Rumah Tangga, Medan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="relative py-24 sm:py-32">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-surface-border to-transparent"></div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="reveal-up inline-block text-primary text-sm font-semibold tracking-widest uppercase mb-4">FAQ</span>
+        <h2 class="reveal-up text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          Pertanyaan <span class="text-gradient">Yang Sering Ditanyakan</span>
+        </h2>
+      </div>
+      <div class="space-y-3">
+        <div class="reveal-up faq-item border border-surface-border rounded-xl overflow-hidden bg-surface/30 hover:border-surface-border transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+            <span class="text-sm sm:text-base font-medium pr-4">Bagaimana sistem pembayaran di Niel bekerja?</span>
+            <i data-lucide="plus" class="w-5 h-5 text-text-muted flex-shrink-0 faq-icon transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">Kamu tinggal pilih produk, klik "Beli Sekarang", lalu langsung masuk ke halaman pembayaran. Pilih metode pembayaran (QRIS, Virtual Account, atau E-Wallet), bayar, dan akun premiummu akan otomatis dikirim ke email. Tidak perlu chat admin atau pindah ke WhatsApp — semuanya serba otomatis.</p>
+          </div>
+        </div>
+        <div class="reveal-up faq-item border border-surface-border rounded-xl overflow-hidden bg-surface/30 hover:border-surface-border transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+            <span class="text-sm sm:text-base font-medium pr-4">Metode pembayaran apa saja yang tersedia?</span>
+            <i data-lucide="plus" class="w-5 h-5 text-text-muted flex-shrink-0 faq-icon transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">Kami menerima pembayaran melalui QRIS (scan dari e-wallet atau mobile banking manapun), Virtual Account (BCA, BRI, Mandiri, BNI), dan E-Wallet (GoPay, OVO, DANA, ShopeePay). Semua metode diproses secara otomatis dan instan.</p>
+          </div>
+        </div>
+        <div class="reveal-up faq-item border border-surface-border rounded-xl overflow-hidden bg-surface/30 hover:border-surface-border transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+            <span class="text-sm sm:text-base font-medium pr-4">Berapa lama akun premium aktif setelah bayar?</span>
+            <i data-lucide="plus" class="w-5 h-5 text-text-muted flex-shrink-0 faq-icon transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">Untuk sebagian besar produk, akun premium akan aktif dalam hitungan detik setelah pembayaran dikonfirmasi. Detail akun akan dikirim langsung ke email yang kamu daftarkan. Untuk produk tertentu yang memerlukan proses manual, estimasi maksimal 1x24 jam.</p>
+          </div>
+        </div>
+        <div class="reveal-up faq-item border border-surface-border rounded-xl overflow-hidden bg-surface/30 hover:border-surface-border transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+            <span class="text-sm sm:text-base font-medium pr-4">Apakah ada garansi untuk akun yang dibeli?</span>
+            <i data-lucide="plus" class="w-5 h-5 text-text-muted flex-shrink-0 faq-icon transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">Tentu! Semua akun premium yang kami jual memiliki garansi sesuai durasi langganan yang kamu pilih. Jika akun mengalami masalah di tengah jalan, cukup hubungi support kami dan kami akan mengganti akun baru atau memperbaikinya — tanpa biaya tambahan.</p>
+          </div>
+        </div>
+        <div class="reveal-up faq-item border border-surface-border rounded-xl overflow-hidden bg-surface/30 hover:border-surface-border transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+            <span class="text-sm sm:text-base font-medium pr-4">Apakah data pembayaran saya aman?</span>
+            <i data-lucide="plus" class="w-5 h-5 text-text-muted flex-shrink-0 faq-icon transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">Keamanan adalah prioritas kami. Seluruh proses pembayaran dilakukan melalui payment gateway terenkripsi dan bersertifikat. Kami tidak menyimpan data kartu atau informasi sensitif kamu. Setiap transaksi dilindungi oleh protokol keamanan SSL.</p>
+          </div>
+        </div>
+        <div class="reveal-up faq-item border border-surface-border rounded-xl overflow-hidden bg-surface/30 hover:border-surface-border transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+            <span class="text-sm sm:text-base font-medium pr-4">Bisa request aplikasi yang belum tersedia?</span>
+            <i data-lucide="plus" class="w-5 h-5 text-text-muted flex-shrink-0 faq-icon transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">Bisa banget! Kami selalu terbuka untuk permintaan aplikasi baru. Hubungi kami melalui form kontak atau social media, dan kami akan berusaha segera menyediakan aplikasi yang kamu butuhkan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="relative py-24 sm:py-32">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-surface-border to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div>
+          <span class="reveal-up inline-block text-primary text-sm font-semibold tracking-widest uppercase mb-4">Kontak</span>
+          <h2 class="reveal-up text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            Punya Pertanyaan?<br><span class="text-gradient">Hubungi Kami</span>
+          </h2>
+          <p class="reveal-up text-text-secondary text-base sm:text-lg leading-relaxed mb-8">
+            Tim support kami siap membantu 24/7. Kirim pesan melalui form ini atau hubungi kami melalui kontak di bawah.
+          </p>
+          <div class="reveal-up space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-xs text-text-muted mb-0.5">Email</div>
+                <div class="text-sm font-medium">support@niel.id</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <i data-lucide="message-circle" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-xs text-text-muted mb-0.5">WhatsApp</div>
+                <div class="text-sm font-medium">+62 812-3456-7890</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <i data-lucide="instagram" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-xs text-text-muted mb-0.5">Instagram</div>
+                <div class="text-sm font-medium">@niel.premium</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-up">
+          <form id="contactForm" class="p-6 sm:p-8 rounded-2xl border border-surface-border bg-surface/50 backdrop-blur-sm space-y-5">
+            <div>
+              <label class="block text-sm font-medium mb-2">Nama Lengkap</label>
+              <input type="text" required placeholder="Masukkan nama kamu" class="w-full px-4 py-3 rounded-xl bg-dark border border-surface-border text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Email</label>
+              <input type="email" required placeholder="email@kamu.com" class="w-full px-4 py-3 rounded-xl bg-dark border border-surface-border text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Subjek</label>
+              <select required class="w-full px-4 py-3 rounded-xl bg-dark border border-surface-border text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all">
+                <option value="" class="text-text-muted">Pilih subjek</option>
+                <option>Pertanyaan produk</option>
+                <option>Request app baru</option>
+                <option>Masalah pembayaran</option>
+                <option>Garansi & refund</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Pesan</label>
+              <textarea rows="4" required placeholder="Tulis pesan kamu di sini..." class="w-full px-4 py-3 rounded-xl bg-dark border border-surface-border text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3.5 bg-primary text-dark font-semibold rounded-xl hover:bg-primary-dark hover:shadow-[0_0_30px_rgba(0,229,160,0.25)] transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              Kirim Pesan
+            </button>
+            <div id="contactSuccess" class="hidden text-center py-3 text-sm text-primary font-medium">
+              <i data-lucide="check-circle" class="w-5 h-5 inline-block mr-1 align-text-bottom"></i>
+              Pesan berhasil dikirim! Kami akan segera membalas.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative border-t border-surface-border py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div class="sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <span class="text-dark font-black text-sm">N</span>
+            </div>
+            <span class="text-xl font-bold tracking-tight">Niel</span>
+          </div>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Akun premium app terlengkap dan termurah. Bayar langsung di website — praktis, aman, dan instan.</p>
+          <div class="flex items-center gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg border border-surface-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary/30 transition-all">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg border border-surface-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary/30 transition-all">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg border border-surface-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary/30 transition-all">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg border border-surface-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary/30 transition-all">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
           </div>
         </div>
         <div>
-          <label class="f-label">Kebutuhan</label>
-          <select class="f-select">
-            <option value="">— Pilih topik —</option>
-            <option>Ingin membeli produk</option>
-            <option>Request produk baru</option>
-            <option>Masalah aktivasi</option>
-            <option>Request refund</option>
-            <option>Kerjasama / reseller</option>
-            <option>Lainnya</option>
-          </select>
+          <h4 class="text-sm font-semibold mb-4">Produk</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#products" class="text-sm text-text-secondary hover:text-primary transition-colors">Streaming Apps</a></li>
+            <li><a href="#products" class="text-sm text-text-secondary hover:text-primary transition-colors">Produktivitas</a></li>
+            <li><a href="#products" class="text-sm text-text-secondary hover:text-primary transition-colors">Bundle Hemat</a></li>
+            <li><a href="#products" class="text-sm text-text-secondary hover:text-primary transition-colors">Produk Terbaru</a></li>
+          </ul>
         </div>
         <div>
-          <label class="f-label">Pesan</label>
-          <textarea class="f-textarea" placeholder="Ceritakan kebutuhanmu secara detail..." required></textarea>
+          <h4 class="text-sm font-semibold mb-4">Bantuan</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#faq" class="text-sm text-text-secondary hover:text-primary transition-colors">FAQ</a></li>
+            <li><a href="#contact" class="text-sm text-text-secondary hover:text-primary transition-colors">Hubungi Kami</a></li>
+            <li><a href="#" class="text-sm text-text-secondary hover:text-primary transition-colors">Cara Order</a></li>
+            <li><a href="#" class="text-sm text-text-secondary hover:text-primary transition-colors">Kebijakan Garansi</a></li>
+          </ul>
         </div>
-        <p class="f-note">⚡ Rata-rata respons dalam 15 menit pada jam operasional.</p>
-        <button type="submit" class="f-submit">Kirim Pesan →</button>
-      </form>
-      <div class="f-success" id="fSuccess">
-        <div class="f-success-icon">✅</div>
-        <h3>Pesan Terkirim!</h3>
-        <p>Tim kami akan segera menghubungimu.<br>Cek email atau WhatsApp kamu ya.</p>
+        <div>
+          <h4 class="text-sm font-semibold mb-4">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-text-secondary hover:text-primary transition-colors">Syarat & Ketentuan</a></li>
+            <li><a href="#" class="text-sm text-text-secondary hover:text-primary transition-colors">Kebijakan Privasi</a></li>
+            <li><a href="#" class="text-sm text-text-secondary hover:text-primary transition-colors">Refund Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-text-muted">&copy; 2025 Niel. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-text-muted">Pembayaran aman via</span>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-1 rounded text-[10px] font-bold bg-surface border border-surface-border text-text-secondary">QRIS</span>
+            <span class="px-2 py-1 rounded text-[10px] font-bold bg-surface border border-surface-border text-text-secondary">VA</span>
+            <span class="px-2 py-1 rounded text-[10px] font-bold bg-surface border border-surface-border text-text-secondary">EWALLET</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PAYMENT MODAL -->
+  <div id="paymentModal" class="fixed inset-0 z-[100] hidden">
+    <div id="paymentOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div id="paymentContent" class="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-surface-border bg-surface scale-95 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+        <!-- Step 1: Confirm Order -->
+        <div id="payStep1" class="p-6 sm:p-8">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-bold">Konfirmasi Pesanan</h3>
+            <button onclick="closePaymentModal()" class="p-2 rounded-lg hover:bg-surface-el transition-colors">
+              <i data-lucide="x" class="w-5 h-5 text-text-muted"></i>
+            </button>
+          </div>
+          <div id="orderDetails" class="p-4 rounded-xl bg-dark border border-surface-border mb-6">
+            <!-- Filled by JS -->
+          </div>
+          <div class="mb-6">
+            <label class="block text-sm font-medium mb-2">Email untuk pengiriman akun</label>
+            <input type="email" id="payEmail" required placeholder="email@kamu.com" class="w-full px-4 py-3 rounded-xl bg-dark border border-surface-border text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all">
+          </div>
+          <div class="mb-6">
+            <label class="block text-sm font-medium mb-2">Nomor WhatsApp (opsional)</label>
+            <input type="tel" id="payPhone" placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 rounded-xl bg-dark border border-surface-border text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all">
+          </div>
+          <button onclick="goToPaymentStep2()" class="w-full py-3.5 bg-primary text-dark font-semibold rounded-xl hover:bg-primary-dark transition-all duration-300 flex items-center justify-center gap-2">
+            Pilih Metode Pembayaran
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Step 2: Payment Method -->
+        <div id="payStep2" class="p-6 sm:p-8 hidden">
+          <div class="flex items-center gap-3 mb-6">
+            <button onclick="goToPaymentStep1()" class="p-2 rounded-lg hover:bg-surface-el transition-colors">
+              <i data-lucide="arrow-left" class="w-5 h-5 text-text-muted"></i>
+            </button>
+            <h3 class="text-lg font-bold">Metode Pembayaran</h3>
+          </div>
+
+          <!-- QRIS -->
+          <div class="mb-3">
+            <button onclick="selectPaymentMethod('qris')" class="pay-method-btn w-full flex items-center gap-4 p-4 rounded-xl border border-surface-border bg-dark hover:border-primary/50 transition-all duration-300 group" data-method="qris">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+              </div>
+              <div class="text-left flex-1">
+                <div class="text-sm font-semibold group-hover:text-primary transition-colors">QRIS</div>
+                <div class="text-xs text-text-muted">Scan QR dari e-wallet atau m-banking manapun</div>
+              </div>
+              <div class="w-5 h-5 rounded-full border-2 border-surface-border pay-method-check flex items-center justify-center transition-all"></div>
+            </button>
+          </div>
+
+          <!-- Virtual Account -->
+          <div class="mb-3">
+            <button onclick="selectPaymentMethod('va')" class="pay-method-btn w-full flex items-center gap-4 p-4 rounded-xl border border-surface-border bg-dark hover:border-primary/50 transition-all duration-300 group" data-method="va">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="landmark" class="w-6 h-6 text-primary"></i>
+              </div>
+              <div class="text-left flex-1">
+                <div class="text-sm font-semibold group-hover:text-primary transition-colors">Virtual Account</div>
+                <div class="text-xs text-text-muted">BCA, BRI, Mandiri, BNI</div>
+              </div>
+              <div class="w-5 h-5 rounded-full border-2 border-surface-border pay-method-check flex items-center justify-center transition-all"></div>
+            </button>
+          </div>
+
+          <!-- E-Wallet -->
+          <div class="mb-6">
+            <button onclick="selectPaymentMethod('ewallet')" class="pay-method-btn w-full flex items-center gap-4 p-4 rounded-xl border border-surface-border bg-dark hover:border-primary/50 transition-all duration-300 group" data-method="ewallet">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="smartphone" class="w-6 h-6 text-primary"></i>
+              </div>
+              <div class="text-left flex-1">
+                <div class="text-sm font-semibold group-hover:text-primary transition-colors">E-Wallet</div>
+                <div class="text-xs text-text-muted">GoPay, OVO, DANA, ShopeePay</div>
+              </div>
+              <div class="w-5 h-5 rounded-full border-2 border-surface-border pay-method-check flex items-center justify-center transition-all"></div>
+            </button>
+          </div>
+
+          <button id="payNowBtn" onclick="processPayment()" disabled class="w-full py-3.5 bg-primary/30 text-dark/50 font-semibold rounded-xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+            <i data-lucide="lock" class="w-4 h-4"></i>
+            Bayar Sekarang
+          </button>
+        </div>
+
+        <!-- Step 3: Payment Processing -->
+        <div id="payStep3" class="p-6 sm:p-8 hidden">
+          <div class="text-center">
+            <div id="paymentInfo">
+              <!-- Filled by JS based on method -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div id="payStep4" class="p-6 sm:p-8 hidden">
+          <div class="text-center">
+            <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 animate-bounce-slow">
+              <i data-lucide="check" class="w-10 h-10 text-primary"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Pembayaran Berhasil!</h3>
+            <p class="text-text-secondary text-sm mb-6">Akun premium kamu sedang diproses dan akan dikirim ke email yang kamu daftarkan. Proses biasanya memakan waktu kurang dari 5 menit.</p>
+            <div class="p-4 rounded-xl bg-dark border border-surface-border mb-6 text-left">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-text-muted">Order ID</span>
+                <span id="successOrderId" class="text-xs font-mono text-primary">#NIEL000000</span>
+              </div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-text-muted">Produk</span>
+                <span id="successProduct" class="text-xs font-medium">-</span>
+              </div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-text-muted">Email</span>
+                <span id="successEmail" class="text-xs font-medium">-</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-text-muted">Total</span>
+                <span id="successTotal" class="text-xs font-bold text-primary">Rp 0</span>
+              </div>
+            </div>
+            <button onclick="closePaymentModal()" class="w-full py-3.5 bg-primary text-dark font-semibold rounded-xl hover:bg-primary-dark transition-all duration-300">
+              Selesai
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-main">
-    <div class="footer-brand">
-      <span class="foot-logo">Niel<sup>™</sup></span>
-      <p class="foot-desc">Solusi aplikasi premium terpercaya untuk kreator, profesional, dan pelajar Indonesia. Lisensi resmi, harga jujur, layanan nyata.</p>
-      <div class="foot-socials">
-        <a href="#" class="soc" aria-label="Instagram">ig</a>
-        <a href="#" class="soc" aria-label="WhatsApp">wa</a>
-        <a href="#" class="soc" aria-label="Tokopedia">tp</a>
-        <a href="#" class="soc" aria-label="Shopee">sp</a>
-      </div>
-    </div>
-    <div class="foot-col">
-      <h4>Produk</h4>
-      <ul>
-        <li><a href="#products">Adobe CC</a></li>
-        <li><a href="#products">Office 365</a></li>
-        <li><a href="#products">ChatGPT Plus</a></li>
-        <li><a href="#products">NordVPN</a></li>
-        <li><a href="#products">Figma Pro</a></li>
-        <li><a href="#products">Notion AI</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>Informasi</h4>
-      <ul>
-        <li><a href="#about">Tentang Kami</a></li>
-        <li><a href="#testimonials">Ulasan</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Kontak</a></li>
-        <li><a href="#">Cara Pemesanan</a></li>
-        <li><a href="#">Program Reseller</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>Kebijakan</h4>
-      <ul>
-        <li><a href="#">Syarat & Ketentuan</a></li>
-        <li><a href="#">Kebijakan Privasi</a></li>
-        <li><a href="#">Kebijakan Refund</a></li>
-        <li><a href="#">Kebijakan Pengiriman</a></li>
-      </ul>
+  <!-- TOAST -->
+  <div id="toast" class="fixed bottom-6 right-6 z-[200] translate-y-4 opacity-0 pointer-events-none transition-all duration-500">
+    <div class="flex items-center gap-3 px-5 py-4 rounded-xl bg-surface border border-surface-border shadow-2xl">
+      <i data-lucide="check-circle" class="w-5 h-5 text-primary flex-shrink-0"></i>
+      <span id="toastMsg" class="text-sm font-medium">Pesan terkirim</span>
     </div>
   </div>
-  <div class="foot-bottom">
-    <p>© 2024 Niel Store. All rights reserved.</p>
-    <div class="foot-badges">
-      <span class="foot-badge">✓ Lisensi Resmi</span>
-      <span class="foot-badge">⚡ Aktivasi Instan</span>
-      <span class="foot-badge">🔄 Garansi Refund</span>
-    </div>
-    <p>Jakarta, Indonesia</p>
-  </div>
-</footer>
 
-<script>
-// Cursor
-const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
-document.querySelectorAll('a,button,.prod-card,.testi-card,.mini-app').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curR.style.width='52px';curR.style.height='52px';curR.style.borderColor='rgba(212,168,83,.6)'});
-  el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';curR.style.width='32px';curR.style.height='32px';curR.style.borderColor='rgba(212,168,83,.35)'});
-});
-
-// Navbar
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60));
-
-// Hamburger
-const ham=document.getElementById('ham'),mob=document.getElementById('mobMenu');
-ham.addEventListener('click',()=>{
-  mob.classList.toggle('open');
-  const s=ham.querySelectorAll('span');
-  if(mob.classList.contains('open')){s[0].style.transform='rotate(45deg) translate(4px,4px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(4px,-4px)'}
-  else{s.forEach(x=>{x.style.transform='';x.style.opacity=''})}
-});
-mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-  mob.classList.remove('open');
-  ham.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''});
-}));
-
-// Reveal
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// FAQ
-document.querySelectorAll('.faq-q').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const item=btn.parentElement,was=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!was)item.classList.add('open');
-  });
-});
-
-// Filter products
-function filterProducts(btn,cat){
-  document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.prod-card').forEach(c=>{
-    c.style.display=(cat==='all'||c.dataset.cat===cat)?'flex':'none';
-  });
-}
-
-// Order redirect
-function order(name){
-  const msg=encodeURIComponent('Halo Niel Store, saya ingin membeli: '+name);
-  window.open('https://wa.me/628xxx?text='+msg,'_blank');
-}
-
-// Form
-document.getElementById('cForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  document.getElementById('cForm').style.display='none';
-  document.getElementById('fSuccess').style.display='block';
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-  });
-});
-</script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+<script src="https://deepsite.hf.co/deepsite-badge.js"></script>
 </body>
 </html>
