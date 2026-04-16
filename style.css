@@ -1,0 +1,343 @@
+/* ===== BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #2A2A2E #0A0A0B;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A2E;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3A3A3E;
+}
+
+::selection {
+  background: rgba(0, 229, 160, 0.2);
+  color: #F5F5F5;
+}
+
+/* ===== NAVBAR ===== */
+#navbar {
+  background: transparent;
+}
+
+#navbar.scrolled {
+  background: rgba(10, 10, 11, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(42, 42, 46, 0.5);
+}
+
+/* ===== HERO ===== */
+.hero-bg {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 229, 160, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(0, 229, 160, 0.03), transparent);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #00E5A0 0%, #00B8D4 50%, #00E5A0 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== ANIMATIONS ===== */
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.12; }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Reveal Animations */
+.reveal-up,
+.reveal-right {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-up.revealed,
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+/* Stagger children */
+.reveal-up:nth-child(2) { transition-delay: 0.1s; }
+.reveal-up:nth-child(3) { transition-delay: 0.2s; }
+.reveal-up:nth-child(4) { transition-delay: 0.3s; }
+.reveal-up:nth-child(5) { transition-delay: 0.4s; }
+.reveal-up:nth-child(6) { transition-delay: 0.5s; }
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 229, 160, 0.3);
+  box-shadow: 0 20px 60px -15px rgba(0, 229, 160, 0.1);
+}
+
+.product-card:hover .product-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 229, 160, 0.2);
+}
+
+.product-icon {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Badge shimmer */
+.badge-popular {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-popular::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ===== FILTER BUTTONS ===== */
+.filter-btn {
+  color: #8A8A8E;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.filter-btn:hover {
+  color: #F5F5F5;
+  background: rgba(255,255,255,0.03);
+}
+
+.filter-btn.active {
+  color: #00E5A0;
+  background: rgba(0, 229, 160, 0.1);
+  border-color: rgba(0, 229, 160, 0.3);
+}
+
+/* ===== FAQ ===== */
+.faq-item.active {
+  border-color: rgba(0, 229, 160, 0.2);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  color: #00E5A0;
+}
+
+.faq-item.active .faq-btn span {
+  color: #F5F5F5;
+}
+
+/* ===== PAYMENT MODAL ===== */
+#paymentModal.active {
+  display: flex;
+}
+
+#paymentModal.active #paymentOverlay {
+  opacity: 1;
+}
+
+#paymentModal.active #paymentContent {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.pay-method-btn.selected {
+  border-color: rgba(0, 229, 160, 0.5);
+  background: rgba(0, 229, 160, 0.05);
+}
+
+.pay-method-btn.selected .pay-method-check {
+  border-color: #00E5A0;
+  background: #00E5A0;
+}
+
+.pay-method-btn.selected .pay-method-check::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #0A0A0B;
+  border-radius: 50%;
+}
+
+#payNowBtn.enabled {
+  background: #00E5A0;
+  color: #0A0A0B;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(0, 229, 160, 0.25);
+}
+
+#payNowBtn.enabled:hover {
+  background: #00CC8E;
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(0, 229, 160, 0.35);
+}
+
+/* QR Code visual */
+.qr-container {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.qr-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Payment timer */
+.payment-timer {
+  font-variant-numeric: tabular-nums;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ===== COUNTDOWN TIMER ===== */
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.timer-warning {
+  color: #F59E0B;
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+
+.timer-danger {
+  color: #EF4444;
+  animation: timer-pulse 0.5s ease-in-out infinite;
+}
+
+/* ===== TOAST ===== */
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== NAV LINK UNDERLINE ===== */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #00E5A0;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .text-gradient {
+    font-size: inherit;
+  }
+}
+
+/* ===== LOADING SKELETON ===== */
+@keyframes loading-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1C1C1F 25%, #2A2A2E 50%, #1C1C1F 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== COPY BUTTON ===== */
+.copy-btn {
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  color: #00E5A0;
+}
+
+.copy-btn.copied {
+  color: #00E5A0;
+}
